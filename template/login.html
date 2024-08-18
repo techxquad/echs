@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assert/css/background.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        /* Progress Bar Container */
+        .progress-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 25px;
+            margin-bottom: 20px;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 5%;
+            /* Start at 5% for the first step */
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 25px;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .step h2 {
+            margin-bottom: 10px;
+        }
+
+        .step input,
+        .step select,
+        .step textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .buttons {
+            text-align: right;
+        }
+
+        .buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .buttons button:disabled {
+            background-color: #ccc;
+        }
+
+        /* Star Rating CSS */
+        .rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .rating input[type="radio"] {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 30px;
+            color: #ccc;
+            padding: 0 10px;
+            cursor: pointer;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .rating input[type="radio"]:checked~label {
+            color: #FFD700;
+        }
+
+        .rating input[type="radio"]:checked~label:hover,
+        .rating input[type="radio"]:checked+label:hover~label {
+            color: #FFD700;
+        }
+
+        .rating label:hover,
+        .rating label:hover~label {
+            color: #FFD700;
+        }
+
+        .rating-text {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .box {
+            border-top-right-radius: 20%;
+            border-bottom-left-radius: 20%;
+        }
+
+        .bg-blue {
+            background-color: #3399ff;
+        }
+    </style>
+</head>
+
+<body class="bg-blue">
+    <br><br><br><br>
+    <!-- <section class="bg">
+        <div class='ripple-background '>
+            <div class='circle xxlarge shade1 '></div>
+            <div class='circle xlarge shade2 '></div>
+            <div class='circle large shade3 '></div>
+            <div class='circle mediun shade4 '></div>
+            <div class='circle small shade5 '></div>
+        </div>
+    </section> -->
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+
+                <div class="box bg-white p-4">
+                    <h1>Log In</h1>
+                    <br><br>
+                    <form id="loginForm" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                            <div class="invalid-feedback">
+                                Please enter your username.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="invalid-feedback">
+                                Please enter your password.
+                            </div>
+                        </div>
+
+                        <!-- Random Addition Question -->
+                        <div class="mb-3">
+                            <label for="additionQuestion" class="form-label">What is <span id="num1"></span> + <span
+                                    id="num2"></span> ?</label>
+                            <input type="number" class="form-control" id="additionAnswer" name="additionAnswer"
+                                required>
+                            <div class="invalid-feedback">
+                                Please answer the question correctly.
+                            </div>
+                        </div>
+
+
+                        <!-- Navigation buttons -->
+                        <div class="buttons">
+                            <button type="submit" id="nextBtn" onclick="">Login</button>
+                        </div>
+                    </form>
+
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        // Generate two random numbers for the addition question
+        let num1 = Math.floor(Math.random() * 10);
+        let num2 = Math.floor(Math.random() * 10);
+        document.getElementById('num1').innerText = num1;
+        document.getElementById('num2').innerText = num2;
+
+        // Handle form validation
+        (function () {
+            'use strict';
+            const form = document.querySelector('#loginForm');
+            form.addEventListener('submit', function (event) {
+                // Get the answer provided by the user
+                let userAnswer = parseInt(document.getElementById('additionAnswer').value, 10);
+
+                // Validate the random addition question
+                if (userAnswer !== (num1 + num2)) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    document.getElementById('additionAnswer').classList.add('is-invalid');
+                } else {
+                    document.getElementById('additionAnswer').classList.remove('is-invalid');
+                    document.getElementById('additionAnswer').classList.add('is-valid');
+                }
+
+                // Check all other form fields
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+
+                form.classList.add('was-validated');
+            }, false);
+        })();
+    </script>
+
+</body>
+
+</html>

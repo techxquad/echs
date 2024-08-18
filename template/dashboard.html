@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Bootstrap Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+
+    <style>
+        /* Custom Styles */
+        body {
+            margin-top: 56px;
+        }
+
+        .navbar-fixed-top {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 56px;
+            left: 0;
+            width: 240px;
+            background-color: #3399ff;
+            padding-top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar a {
+            color: #fff;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #546473;
+            font-size: larger;
+        }
+
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+        footer {
+            /* position: fixed; */
+            bottom: 0;
+            width: 100%;
+            background-color: #3399ff80;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .loading-spinner {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 1050;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-spinner.hidden {
+            display: none;
+        }
+
+        /* Hide sidebar on smaller screens */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+
+        .bg-blue {
+            background-color: #3399ff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blue navbar-fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+                aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="https://echs.sourceinfosys.com/resources/res_internal/img/echslogo.png" width="50" height="50"
+                    alt="Logo" class="d-inline-block align-text-top">
+                Dashboard
+            </a>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div id="sidebarMenu" class="sidebar bg-blue collapse d-lg-block">
+        <a href="#"><i class="bi bi-house-door"></i> Dashboard</a>
+        <a href="#"><i class="bi bi-hospital"></i> Polyclinic</a>
+        <a href="#"><i class="bi bi-card-list"></i> Empanelled</a>
+        <a href="#"><i class="bi bi-person"></i> Profile</a>
+        <a href="#"><i class="bi bi-box-arrow-right"></i> Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content p-5">
+        <h1>Welcome to the Dashboard</h1>
+        <p>This is your main dashboard content area.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem debitis deleniti quaerat fuga. Rem
+            numquam
+            exercitationem ipsa accusantium ratione a odit enim vitae! Beatae tenetur deserunt sed totam blanditiis,
+            perspiciatis alias unde iste libero! Recusandae, maiores ullam pariatur commodi nisi rem! Id vero earum
+            laboriosam nemo ipsum! Commodi porro reprehenderit delectus deserunt vero necessitatibus sit placeat unde
+            ducimus? Quam voluptate voluptas libero pariatur officiis? Ipsum, ea accusamus exercitationem sint libero
+            est
+            optio odit placeat cum quidem dolor a nam dolorum, vitae pariatur odio sed aliquid sunt atque! Officia
+            praesentium illo temporibus accusamus, assumenda doloribus quaerat. Vitae iure doloremque magnam laudantium
+            fugiat eveniet, amet dolore autem quas, id voluptatem tempora quibusdam commodi eligendi ipsam ratione a
+            inventore? Sunt ipsam quis ab rem reprehenderit, numquam repellendus odio exercitationem alias consequatur
+            in
+            repellat modi, excepturi culpa sequi fugiat itaque delectus similique, eius dolorum veritatis? Alias fugiat
+            natus magni iure unde veniam perferendis minus! Nostrum in aliquid, provident quis sed quasi dolor incidunt
+            nam
+            pariatur? Corporis expedita aut ratione sed cupiditate quas. Voluptas, eveniet. Repellendus obcaecati earum
+            quos
+            commodi possimus maxime nam asperiores, quasi in dolorem itaque iure fugit facilis dolore impedit aliquam
+            omnis
+            est odio illum unde maiores adipisci ut veniam. Est quas quaerat, quod a nisi placeat iusto explicabo saepe
+            eaque doloremque veritatis voluptatibus magni eos fuga harum, aliquam deleniti, ducimus esse nemo molestiae
+            dolorem pariatur deserunt magnam ea! Voluptas totam laborum, distinctio vel pariatur, delectus atque
+            reiciendis
+            mollitia nemo labore eos aliquid. Modi neque ipsum error recusandae facilis eligendi illo, hic eos eius
+            commodi
+            amet consequuntur a, unde quos obcaecati dignissimos perferendis vitae veritatis quod vero atque. Deleniti
+            in
+            non mollitia sapiente, incidunt doloremque quasi necessitatibus assumenda accusamus suscipit veniam optio
+            facere
+            ipsa veritatis, unde nisi culpa adipisci ipsam voluptatem esse itaque vitae sunt. Nostrum excepturi
+            consequuntur, repellendus optio facilis laudantium itaque modi cum voluptate amet. Vel quasi exercitationem,
+            ullam id nemo accusamus laudantium consequuntur? Debitis placeat ducimus, quae eligendi temporibus tenetur
+            quaerat quo. Excepturi ab aspernatur illo quae sed pariatur labore voluptatibus. Quis veritatis id libero
+            quod
+            eos, placeat atque mollitia qui reprehenderit quam vel nesciunt cum, natus exercitationem facilis voluptates
+            quos ut totam dolorem facere sed eveniet modi ea? Quisquam perferendis aperiam vitae facere optio dolor
+            nobis?
+            Odio distinctio commodi a similique dolorum eos nostrum deleniti voluptatibus temporibus placeat assumenda
+            veniam unde neque dolores nobis quas, laborum, officia fugit. Voluptatibus, beatae quaerat quas aut soluta,
+            iste
+            quis dolore deleniti, dolores magni libero quisquam nam reprehenderit quia atque voluptate sequi tempore.
+            Accusamus nesciunt, numquam officiis, ut corrupti pariatur voluptates velit expedita placeat voluptatem
+            delectus
+            et ullam, esse impedit qui necessitatibus ab nobis eos aperiam accusantium eveniet possimus. Cum distinctio
+            recusandae hic illum nihil quisquam iure porro sed pariatur, reprehenderit nam, sequi in repudiandae sint
+            quam
+            atque totam. Ad nostrum, magnam neque accusamus eaque, voluptas ducimus molestias doloremque nesciunt
+            molestiae
+            ab modi quos, omnis assumenda officiis quis! Quod similique velit molestiae, ipsam nemo, atque ipsa qui
+            laudantium neque iure corrupti esse quisquam quas aperiam praesentium temporibus deleniti earum veritatis
+            cum
+            ullam?</p>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Your Company. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Hide spinner after the page is loaded
+        window.addEventListener('load', function () {
+            document.getElementById('loadingSpinner').classList.add('hidden');
+        });
+
+        // Sidebar toggle for mobile screens
+        document.querySelector('.navbar-toggler').addEventListener('click', function () {
+            const sidebar = document.getElementById('sidebarMenu');
+            sidebar.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
