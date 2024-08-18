@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assert/css/background.css">
+    <link rel="stylesheet" href="./assert/css/form.css">
+
+</head>
+
+<body class="bg-blue">
+    <br><br><br><br>
+    <section class="bg">
+        <div class='ripple-background '>
+            <div class='circle xxlarge shade1 '></div>
+            <div class='circle xlarge shade2 '></div>
+            <div class='circle large shade3 '></div>
+            <div class='circle mediun shade4 '></div>
+            <div class='circle small shade5 '></div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+
+                <div class="box bg-white p-4">
+                    <!-- <h1>20-Step Form with Progress Bar and 5-Star Rating</h1> -->
+                    <br><br>
+                    <!-- Progress Bar -->
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar">5%</div>
+                    </div>
+
+                    <form id="multiStepForm">
+                        <!-- q1  not working -->
+                        <div class="step active">
+                            <h2>1. Select hospital where medical facility has been availed.</h2>
+                            <!-- Bootstrap Dropdown for Hospital Selection -->
+                            <div class="form-group">
+                                <label for="q1">Select Hospital:</label>
+                                <select class="form-control" id="q1" name="q1">
+                                    <option value="Jaswant Rai Hospital">Jaswant Rai Hospital, Meerut</option>
+                                    <option value="Anand Hospital">Anand Hospital, Meerut</option>
+                                    <option value="Dhanvantri Hospital">Dhanvantri Hospital, Meerut</option>
+                                    <option value="Hope Hospital">Hope Hospital, Meerut</option>
+                                    <option value="Kailashi Hospital">Kailashi Hospital, Meerut</option>
+                                    <option value="other">Other (Enter Hospital Name)</option>
+                                </select>
+                            </div>
+
+                            <!-- Text Input for Other Hospital Name -->
+                            <div class="form-group" id="otherHospitalDiv" style="display:none;">
+                                <label for="otherHospital">Enter Hospital Name:</label>
+                                <input type="text" class="form-control" id="otherHospital"
+                                    placeholder="Enter hospital name if not listed">
+                            </div>
+
+                            <script>
+                                // Show/Hide the text input field based on the selected option
+                                document.getElementById('q1').addEventListener('change', function () {
+                                    const otherHospitalDiv = document.getElementById('otherHospitalDiv');
+                                    if (this.value === 'other') {
+                                        otherHospitalDiv.style.display = 'block';
+                                    } else {
+                                        otherHospitalDiv.style.display = 'none';
+                                    }
+                                });
+                            </script>
+
+                        </div>
+                        <!-- q2 -->
+                        <div class="step">
+                            <h2>Is there Online/ Tele appointment facility available in the hospital? </h2>
+                            <label for="q2">Select an Option:</label>
+                            <div class="rating">
+                                <input type="radio" id="yes_q2" name="q2" value="yes">
+                                <label for="yes_q2">Yes</label>
+                                <input type="radio" id="no_q2" name="q2" value="no">
+                                <label for="no_q2">No</label>
+                            </div>
+                        </div>
+
+                        <!-- q3 -->
+                        <div class="step">
+                            <h2>3. Waiting time at the registration counter. </h2>
+                            <!-- Dropdown for Time Selection -->
+                            <div class="form-group">
+                                <label for="q3">Select Time:</label>
+                                <select class="form-control" name="q3" id="q3">
+                                    <option value="upto_15">Upto 15 mins</option>
+                                    <option value="15_30">15 - 30 mins</option>
+                                    <option value="30_60">30 - 60 mins</option>
+                                    <option value="above_1hr">Above 01 hr</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- q4 -->
+                        <div class="step">
+                            <h2>4. Conduct/ Behaviour of hospital staff at registration/ admission counter.</h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q4" name="q4" value="1">
+                                <label for="star1_q4">&#9733;</label>
+                                <input type="radio" id="star2_q4" name="q4" value="2">
+                                <label for="star2_q4">&#9733;</label>
+                                <input type="radio" id="star3_q4" name="q4" value="3">
+                                <label for="star3_q4">&#9733;</label>
+                                <input type="radio" id="star4_q4" name="q4" value="4">
+                                <label for="star4_q4">&#9733;</label>
+                                <input type="radio" id="star5_q4" name="q4" value="5">
+                                <label for="star5_q4">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+                        <!-- q5 -->
+                        <div class="step">
+                            <h2>5. Time taken for Doctor’s consultation after registration. </h2>
+                            <!-- Dropdown for Time Selection -->
+                            <div class="form-group">
+                                <label for="q5">Select Time:</label>
+                                <select class="form-control" name="q5" id="q5">
+                                    <option value="upto_15">Upto 15 mins</option>
+                                    <option value="15_30">15 - 30 mins</option>
+                                    <option value="30_60">30 - 60 mins</option>
+                                    <option value="01_02">01 - 02 hrs</option>
+                                    <option value="above_2hrs">Above 02 hrs</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- q6 -->
+                        <!-- Question 6: OPD/IPD options for feedback -->
+                        <div class="step">
+                            <h2>6. Select OPD/ IPD options for feedback.</h2>
+                            <label for="q6">Select an Option:</label>
+                            <div class="rating">
+                                <input type="radio" id="opd_q6" name="q6" value="opd">
+                                <label for="opd_q6">OPD</label>
+                                <input type="radio" id="ipd_q6" name="q6" value="ipd">
+                                <label for="ipd_q6">IPD</label>
+                            </div>
+                        </div>
+
+
+                        <!-- q7 -->
+                        <div class="step">
+                            <h2>7. Conduct/ Behaviour of Doctors and Nursing staff.</h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q7" name="q7" value="1">
+                                <label for="star1_q7">&#9733;</label>
+                                <input type="radio" id="star2_q7" name="q7" value="2">
+                                <label for="star2_q7">&#9733;</label>
+                                <input type="radio" id="star3_q7" name="q7" value="3">
+                                <label for="star3_q7">&#9733;</label>
+                                <input type="radio" id="star4_q7" name="q7" value="4">
+                                <label for="star4_q7">&#9733;</label>
+                                <input type="radio" id="star5_q7" name="q7" value="5">
+                                <label for="star5_q7">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+                        <!-- q8 -->
+                        <div class="step">
+                            <h2>8. Availability of all investigation facilities in the hospital.</h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q8" name="q8" value="1">
+                                <label for="star1_q8">&#9733;</label>
+                                <input type="radio" id="star2_q8" name="q8" value="2">
+                                <label for="star_q82">&#9733;</label>
+                                <input type="radio" id="star3_q8" name="q8" value="3">
+                                <label for="star3_q8">&#9733;</label>
+                                <input type="radio" id="star4_q8" name="q8" value="4">
+                                <label for="star4_q8">&#9733;</label>
+                                <input type="radio" id="star5_q8" name="q8" value="5">
+                                <label for="star5_q8">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+
+                        <!-- q9 -->
+                        <!-- Question 9: Whether complete treatment was cashless? -->
+                        <div class="step">
+                            <h2>9. Whether complete treatment was cashless?</h2>
+                            <label for="q9">Select an Option:</label>
+                            <div class="rating">
+                                <input type="radio" id="yes_q9" name="q9" value="yes">
+                                <label for="yes_q9">Yes</label>
+                                <input type="radio" id="no_q9" name="q9" value="no">
+                                <label for="no_q9">No</label>
+                            </div>
+                        </div>
+
+
+                        <!-- q10 -->
+                        <div class="step">
+                            <h2>10. Details of payments made during treatment.</h2>
+                            <textarea id="q10" name="q10" placeholder="Max 200 words" rows="8"></textarea>
+                        </div>
+                        <!-- q11 -->
+                        <div class="step">
+                            <h2>11. Your satisfaction as a patient during entire treatment. </h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q11" name="q11" value="1">
+                                <label for="star1_q11">&#9733;</label>
+                                <input type="radio" id="star2_q11" name="q11" value="2">
+                                <label for="star2_q11">&#9733;</label>
+                                <input type="radio" id="star3_q11" name="q11" value="3">
+                                <label for="star3_q11">&#9733;</label>
+                                <input type="radio" id="star4_q11" name="q11" value="4">
+                                <label for="star4_q11">&#9733;</label>
+                                <input type="radio" id="star5_q11" name="q11" value="5">
+                                <label for="star5_q11">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+
+                        <!-- q12 -->
+                        <div class="step">
+                            <h2>12. Suggestions/ Complaint, if any.</h2>
+                            <textarea id="q12" name="q12" placeholder="Max 200 words" rows="8"></textarea>
+                        </div>
+
+                        <!-- q13 -->
+                        <div class="step">
+                            <h2>13. Convenience in hospital admission process. </h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q13" name="q13" value="1">
+                                <label for="star1_q13">&#9733;</label>
+                                <input type="radio" id="star2_q13" name="q13" value="2">
+                                <label for="star2_q13">&#9733;</label>
+                                <input type="radio" id="star3_q13" name="q13" value="3">
+                                <label for="star3_q13">&#9733;</label>
+                                <input type="radio" id="star4_q13" name="q13" value="4">
+                                <label for="star4_q13">&#9733;</label>
+                                <input type="radio" id="star5_q13" name="q13" value="5">
+                                <label for="star5_q13">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+
+                        <!-- q14 -->
+                        <!-- Question 14: Availability/ allotment of correct ward/ room as per entitlement -->
+                        <div class="step">
+                            <h2>14. Availability/ allotment of correct ward/ room as per entitlement.</h2>
+                            <label for="q14">Select an Option:</label>
+                            <div class="rating">
+                                <input type="radio" id="yes_q14" name="q14" value="yes">
+                                <label for="yes_q14">Yes</label>
+                                <input type="radio" id="no_q14" name="q14" value="no">
+                                <label for="no_q14">No</label>
+                            </div>
+                        </div>
+
+                        <!-- q15 -->
+                        <div class="step">
+                            <h2>15. Timely patient care by Doctors and Nurses. </h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q15" name="q15" value="1">
+                                <label for="star1_q15">&#9733;</label>
+                                <input type="radio" id="star2_q15" name="q15" value="2">
+                                <label for="star2_q15">&#9733;</label>
+                                <input type="radio" id="star3_q15" name="q15" value="3">
+                                <label for="star3_q15">&#9733;</label>
+                                <input type="radio" id="star4_q15" name="q15" value="4">
+                                <label for="star4_q15">&#9733;</label>
+                                <input type="radio" id="star5_q15" name="q15" value="5">
+                                <label for="star5_q15">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+
+                        <!-- q16 -->
+                        <div class="step">
+                            <h2>16. Conduct/ Behaviour of Doctors and Nurses. </h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q16" name="q16" value="1">
+                                <label for="star1_q16">&#9733;</label>
+                                <input type="radio" id="star2_q16" name="q16" value="2">
+                                <label for="star2_q16">&#9733;</label>
+                                <input type="radio" id="star3_q16" name="q16" value="3">
+                                <label for="star3_q16">&#9733;</label>
+                                <input type="radio" id="star4_q16" name="q16" value="4">
+                                <label for="star4_q16">&#9733;</label>
+                                <input type="radio" id="star5_q16" name="q16" value="5">
+                                <label for="star5_q16">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+
+                        <!-- q17 -->
+                        <div class="step">
+                            <h2>17. Availability of all testing/ investigation facilities within the hospital. </h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q17" name="q17" value="1">
+                                <label for="star1_q17">&#9733;</label>
+                                <input type="radio" id="star2_q17" name="q17" value="2">
+                                <label for="star2_q17">&#9733;</label>
+                                <input type="radio" id="star3_q17" name="q17" value="3">
+                                <label for="star3_q17">&#9733;</label>
+                                <input type="radio" id="star4_q17" name="q17" value="4">
+                                <label for="star4_q17">&#9733;</label>
+                                <input type="radio" id="star5_q17" name="q17" value="5">
+                                <label for="star5_q17">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+
+                        <!-- q18 -->
+                        <div class="step">
+                            <h2>18 Timely provision and quality of food. </h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q18" name="q18" value="1">
+                                <label for="star1_q18">&#9733;</label>
+                                <input type="radio" id="star2_q18" name="q18" value="2">
+                                <label for="star2_q18">&#9733;</label>
+                                <input type="radio" id="star3_q18" name="q18" value="3">
+                                <label for="star3_q18">&#9733;</label>
+                                <input type="radio" id="star4_q18" name="q18" value="4">
+                                <label for="star4_q18">&#9733;</label>
+                                <input type="radio" id="star5_q18" name="q18" value="5">
+                                <label for="star5_q18">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+
+                        <!-- q19 -->
+                        <div class="step">
+                            <h2>19. Hygiene and cleanliness of entitled room/ ward and toilets.</h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q19" name="q19" value="1">
+                                <label for="star1_q19">&#9733;</label>
+                                <input type="radio" id="star2_q19" name="q19" value="2">
+                                <label for="star2_q19">&#9733;</label>
+                                <input type="radio" id="star3_q19" name="q19" value="3">
+                                <label for="star3_q19">&#9733;</label>
+                                <input type="radio" id="star4_q19" name="q19" value="4">
+                                <label for="star4_q19">&#9733;</label>
+                                <input type="radio" id="star5_q19" name="q19" value="5">
+                                <label for="star5_q19">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+
+                        <!-- q20 -->
+                        <div class="step">
+                            <h2>20. Cleanliness and regular change of bedding and linen.</h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q20" name="q20" value="1">
+                                <label for="star1_q20">&#9733;</label>
+                                <input type="radio" id="star2_q20" name="q20" value="2">
+                                <label for="star2_q20">&#9733;</label>
+                                <input type="radio" id="star3_q20" name="q20" value="3">
+                                <label for="star3_q20">&#9733;</label>
+                                <input type="radio" id="star4_q20" name="q20" value="4">
+                                <label for="star4_q20">&#9733;</label>
+                                <input type="radio" id="star5_q20" name="q20" value="5">
+                                <label for="star5_q20">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+
+                        <!-- q21 -->
+                        <div class="step">
+                            <h2>21. Availability of medicines in hospital dispensary. </h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q21" name="q21" value="1">
+                                <label for="star1_q21">&#9733;</label>
+                                <input type="radio" id="star2_q21" name="q21" value="2">
+                                <label for="star2_q21">&#9733;</label>
+                                <input type="radio" id="star3_q21" name="q21" value="3">
+                                <label for="star3_q21">&#9733;</label>
+                                <input type="radio" id="star4_q21" name="q21" value="4">
+                                <label for="star4_q21">&#9733;</label>
+                                <input type="radio" id="star5_q21" name="q21" value="5">
+                                <label for="star5_q21">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+
+                        <!-- q22 -->
+                        <div class="step">
+                            <h2>22. Ease of discharge process post treatment. </h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q22" name="q22" value="1">
+                                <label for="star1_q22">&#9733;</label>
+                                <input type="radio" id="star2_q22" name="q22" value="2">
+                                <label for="star2_q22">&#9733;</label>
+                                <input type="radio" id="star3_q22" name="q22" value="3">
+                                <label for="star3_q22">&#9733;</label>
+                                <input type="radio" id="star4_q22" name="q22" value="4">
+                                <label for="star4_q22">&#9733;</label>
+                                <input type="radio" id="star5_q22" name="q22" value="5">
+                                <label for="star5_q22">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+
+                        <!-- q23 -->
+                        <!-- Question 23: Whether complete treatment was cashless? -->
+                        <div class="step">
+                            <h2>23. Whether complete treatment was cashless?</h2>
+                            <label for="q23">Select an Option:</label>
+                            <div class="rating">
+                                <input type="radio" id="yes_q23" name="q23" value="yes">
+                                <label for="yes_q23">Yes</label>
+                                <input type="radio" id="no_q23" name="q23" value="no">
+                                <label for="no_q23">No</label>
+                            </div>
+                        </div>
+
+
+                        <!-- q24 -->
+                        <div class="step">
+                            <h2>24. Details of payments made during treatment, if any.</h2>
+                            <textarea id="q24" name="q24" placeholder="Max 200 words" rows="8"></textarea>
+                        </div>
+                        <!-- q25 -->
+                        <!-- Question 25: Provision of ambulance facility by hospital -->
+                        <div class="step">
+                            <h2>25. Provision of ambulance facility by hospital on being referred by Polyclinic
+                                or
+                                during emergency or on discharge from hospital.</h2>
+                            <label for="q25">Select an Option:</label>
+                            <div class="rating">
+                                <input type="radio" id="yes_q25" name="q25" value="yes">
+                                <label for="yes_q25">Yes</label>
+                                <input type="radio" id="no_q25" name="q25" value="no">
+                                <label for="no_q25">No</label>
+                            </div>
+                        </div>
+
+                        <!-- q26 -->
+                        <div class="step">
+                            <h2>26. Suggestions/ Complaint, if any.</h2>
+                            <textarea id="q26" name="q26" placeholder="Max 200 words" rows="8"></textarea>
+                        </div>
+
+                        <!-- q27 -->
+                        <div class="step">
+                            <h2>27. Your satisfaction as a patient during entire treatment. </h2>
+                            <label for="rating">Rate your experience:</label>
+                            <div class="rating">
+                                <input type="radio" id="star1_q27" name="q27" value="1">
+                                <label for="star1_q27">&#9733;</label>
+                                <input type="radio" id="star2_q27" name="q27" value="2">
+                                <label for="star2_q27">&#9733;</label>
+                                <input type="radio" id="star3_q27" name="q27" value="3">
+                                <label for="star3_q27">&#9733;</label>
+                                <input type="radio" id="star4_q27" name="q27" value="4">
+                                <label for="star4_q27">&#9733;</label>
+                                <input type="radio" id="star5_q27" name="q27" value="5">
+                                <label for="star5_q27">&#9733;</label>
+                            </div>
+                            <div class="rating-text">
+                                <span id="ratingLabel">Please select a rating</span>
+                            </div>
+                        </div>
+
+
+                        <!-- Step 28 -->
+                        <div class="step">
+                            <h2>28. Personal Particulars:</h2>
+
+                            <div class="form-group">
+                                <label for="echsCardNumber">ECHS Card Number:</label>
+                                <input type="text" id="echsCardNumber" name="echsCardNumber"
+                                    placeholder="Enter ECHS Card Number">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nameAsPerCard">Name as per ECHS card (optional):</label>
+                                <input type="text" id="nameAsPerCard" name="nameAsPerCard"
+                                    placeholder="Enter Name as per ECHS card">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dateOfVisit">Date of visit:</label>
+                                <input type="date" id="dateOfVisit" name="dateOfVisit"
+                                    placeholder="Enter Date of Visit (e.g., YYYY-MM-DD)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mobileNumber">Mobile number (optional):</label>
+                                <input type="phone" id="mobileNumber" name="mobileNumber"
+                                    placeholder="Enter Mobile Number">
+                            </div>
+                        </div>
+
+
+                        <!-- Navigation buttons -->
+                        <div class="buttons">
+                            <button type="button" id="prevBtn" onclick="changeStep(-1)">Previous</button>
+                            <button type="button" id="nextBtn" onclick="changeStep(1)">Next</button>
+                            <!-- Submit Button will appear only on the last page -->
+                            <button type="submit" id="submitBtn" style="display:none;">Submit</button>
+                        </div>
+                    </form>
+
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="./assert/js/form.js"></script>
+</body>
+
+</html>
