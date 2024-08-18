@@ -1,0 +1,53 @@
+body {
+    /* font-family: 'Times New ', Times, serif, sans-serif !important; */
+}
+
+.nav-heading{
+    font-weight: 800;
+    color: white;
+    font-size: larger;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    /* Aligns the text with the base of the image */
+}
+
+.nav-heading {
+    margin-left: 10px;
+    /* Adds some space between the image and the text */
+    font-size: 1.25rem;
+    /* Adjust font size as needed */
+}
+
+.mt-6{
+    margin-top: 40px;
+}
+p {
+    font-size: 18px;
+}
+strong {
+    font-weight: 600;
+    /* background: linear-gradient(to top, #ff0000 25%, transparent 20%); */
+}
+
+
+
+.img{
+            filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.5));
+
+}
+/* .rotate {
+    animation: rotate 100s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+} */
