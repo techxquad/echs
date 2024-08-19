@@ -64,6 +64,39 @@ body {
 .buttons button:disabled {
     background-color: #ccc;
 }
+/* yes no  */
+
+.option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.option input[type="radio"] {
+    display: none;
+}
+
+.option label {
+    font-size: 38px;
+    color: #ccc;
+    padding: 0 10px;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.option label:hover {
+    color: #ffc107;
+}
+
+/* Style for the selected radio button */
+.option input[type="radio"]:checked+label {
+    color: #ffc107;
+
+    /* background-color: #ffc107; */
+    /* Color for the filled radio button */
+    /* border-color: #ffc107; */
+}
 
 /* Star Rating CSS */
 .rating {
@@ -78,7 +111,7 @@ body {
 }
 
 .rating label {
-    font-size: 30px;
+    font-size: 38px;
     color: #ccc;
     padding: 0 10px;
     cursor: pointer;
@@ -86,23 +119,31 @@ body {
 }
 
 .rating input[type="radio"]:checked~label {
-    color: #FFD700;
+    color: #ffc107;
+    /* filled star color */
+    }
+
+    .rating label:hover {
+        color: #ffc107;
 }
 
 .rating input[type="radio"]:checked~label:hover,
-.rating input[type="radio"]:checked+label:hover~label {
-    color: #FFD700;
+.rating input[type="radio"]:checked~label:hover~label {
+    color: #ffc107;
+    /* hover effect when star is selected */
 }
 
-.rating label:hover,
-.rating label:hover~label {
-    color: #FFD700;
+*/ .rating-text {
+    text-align: center;
+    margin-top: 10px;
 }
 
 .rating-text {
     text-align: center;
     margin-top: 10px;
 }
+
+
 
 .box {
     border-top-right-radius: 20%;
@@ -111,4 +152,7 @@ body {
 
 .bg-blue {
     background-color: #3399ff;
+}
+.bg-gray {
+    background-color: #6c757d;
 }

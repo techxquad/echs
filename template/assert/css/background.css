@@ -2,6 +2,8 @@
      background: #3399ff;
  }
 
+.bg {}
+
  .circle {
      position: absolute;
      border-radius: 50%;

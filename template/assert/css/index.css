@@ -2,7 +2,7 @@ body {
     /* font-family: 'Times New ', Times, serif, sans-serif !important; */
 }
 
-.nav-heading{
+.nav-heading {
     font-weight: 800;
     color: white;
     font-size: larger;
@@ -21,7 +21,7 @@ body {
     /* Adjust font size as needed */
 }
 
-.mt-6{
+.mt-6 {
     margin-top: 40px;
 }
 p {
@@ -34,8 +34,8 @@ strong {
 
 
 
-.img{
-            filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.5));
+.img {
+    filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.5));
 
 }
 /* .rotate {

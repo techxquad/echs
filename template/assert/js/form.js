@@ -15,6 +15,9 @@ function showStep(step) {
     document.getElementById("nextBtn").style.display = step === steps.length - 1 ? "none" : "inline-block";
     document.getElementById("submitBtn").style.display = step === steps.length - 1 ? "inline-block" : "none";
 
+    // Disable Next button initially if there are required fields in the current step
+    checkRequiredFields();
+
     // Update the progress bar
     updateProgressBar(step);
 }
@@ -39,33 +42,59 @@ function updateProgressBar(step) {
     progressBar.textContent = Math.round(percentComplete) + "%";
 }
 
-// JavaScript for the Rating System
+function checkRequiredFields() {
+    const currentStepElement = document.querySelectorAll(".step")[currentStep];
+    const requiredFields = currentStepElement.querySelectorAll("input[required], select[required], textarea[required]");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let allFilled = true;
+    requiredFields.forEach((field) => {
+        if (!field.value || (field.type === "radio" && !currentStepElement.querySelector(`input[name="${field.name}"]:checked`))) {
+            allFilled = false;
+        }
+    });
+
+    // Enable or disable the "Next" button based on field validation
+    nextBtn.disabled = !allFilled;
+}
+
+// Attach input event listeners to all required fields to check if the "Next" button should be enabled
+document.querySelectorAll("input[required], select[required], textarea[required]").forEach(field => {
+    field.addEventListener("input", checkRequiredFields);
+    if (field.type === "radio") {
+        field.addEventListener("change", checkRequiredFields);  // Radio buttons need change events to be handled
+    }
+});
+
+
+
 const ratingLabels = ["Poor", "Fair", "Good", "Very Good", "Excellent"];
 
-// Function to update rating label and star colors for a specific question
+// Function to update the rating label and star colors for a specific question
 function updateRating(questionId, ratingIndex) {
-    const ratingInputs = document.querySelectorAll(`input[name="${questionId}"]`);
-    const ratingLabel = document.getElementById(`${questionId}Label`);
-    const labels = document.querySelectorAll(`label[for^="${questionId}_star"]`);
+    const ratingLabel = document.getElementById(`ratingLabel_${questionId}`);
+    const labels = document.querySelectorAll(`label[for^="star"][for$="_${questionId}"]`);
 
     // Update rating label
-    ratingLabel.textContent = ratingLabels[ratingIndex];
+    if (ratingLabel && ratingIndex >= 0 && ratingIndex < ratingLabels.length) {
+        ratingLabel.textContent = ratingLabels[ratingIndex];
+    }
 
     // Update star colors
-    ratingInputs.forEach((input, index) => {
+    labels.forEach((label, index) => {
         if (index <= ratingIndex) {
-            labels[index].style.color = "#FFD700"; // Fill stars up to the selected one
+            label.style.color = "#FFD700"; // Filled star color
         } else {
-            labels[index].style.color = "#ccc"; // Empty stars after the selected one
+            label.style.color = "#ccc"; // Empty star color
         }
     });
 }
 
-// Attach change event listeners to all rating inputs
-document.querySelectorAll('input[name="q4"], input[name="q7"], input[name="q8"]').forEach(input => {
+// Attach change event listeners to all radio inputs
+document.querySelectorAll('input[type="radio"]').forEach(input => {
     input.addEventListener("change", (event) => {
-        const questionId = event.target.name;
-        const ratingIndex = Array.from(input.parentElement.children).indexOf(event.target);
-        updateRating(questionId, ratingIndex);
+        const questionId = event.target.name; // Gets "q4"
+        const ratingIndex = parseInt(event.target.value) - 1; // Convert rating value to 0-based index
+        updateRating(questionId, ratingIndex); // Update the rating label and stars
     });
 });
