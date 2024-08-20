@@ -29,17 +29,19 @@
             <div class="col-md-6">
 
                 <div class="box bg-white p-4">
-                    <!-- <h1>20-Step Form with Progress Bar and 5-Star Rating</h1> -->
                     <br><br>
                     <!-- Progress Bar -->
                     <div class="progress-container">
                         <div class="progress-bar" id="progressBar">5%</div>
                     </div>
+                     <p class="text-muted">Mandatory fields are indicated with an asterisk <pow class="text-danger">*
+                         </pow>.</p>
 
                     <form id="multiStepForm">
                         <!-- Question 1 -->
                         <div class="step active">
-                            <h2>1. Waiting time at registration counter.</h2>
+                            <h2>1. Waiting time at registration counter.<pow class="text-danger">*</pow>
+                            </h2>
                             <div class="form-group">
                                 <label for="q1">Select Time:</label>
                                 <select class="form-control" name="q1" id="q1">
@@ -53,7 +55,9 @@
 
                         <!-- Question 2 -->
                         <div class="step">
-                            <h2>2. Time taken for doctor’s consultation post registration.</h2>
+                            <h2>2. Time taken for doctor’s consultation post registration.<pow class="text-danger">*
+                                </pow>
+                            </h2>
                             <div class="form-group">
                                 <label for="q2">Select Time:</label>
                                 <select class="form-control" name="q2" id="q2">
@@ -67,7 +71,9 @@
 
                         <!-- Question 3 -->
                         <div class="step">
-                            <h2>3. Time taken to obtain medicines from pharmacy post doctor’s consultation.</h2>
+                            <h2>3. Time taken to obtain medicines from pharmacy post doctor’s consultation.<pow
+                                    class="text-danger">*</pow>
+                            </h2>
                             <div class="form-group">
                                 <label for="q3">Select Time:</label>
                                 <select class="form-control" name="q3" id="q3">
@@ -81,7 +87,8 @@
                         </div>
                         <!-- Question 4 -->
                         <div class="step">
-                            <h2>4. Availability of medicines in the dispensary.</h2>
+                            <h2>4. Availability of medicines in the dispensary.<pow class="text-danger">*</pow>
+                            </h2>
                             <div class="form-group">
                                 <label for="q4">Select Availability:</label>
                                 <select class="form-control" name="q4" id="q4">
@@ -95,7 +102,9 @@
                         </div>
                         <!-- Question 5 -->
                         <div class="step">
-                            <h2>5. Time taken to provide medicines not available in the dispensary.</h2>
+                            <h2>5. Time taken to provide medicines not available in the dispensary.<pow
+                                    class="text-danger">*</pow>
+                            </h2>
                             <div class="form-group">
                                 <label for="q5">Select Time:</label>
                                 <select class="form-control" name="q5" id="q5">
@@ -111,18 +120,20 @@
                         <div class="step">
                             <h2>6. If all the medicines are not available in the dispensary, awareness about provision
                                 of medicines through
-                                Authorised Local Chemist (ALC) and convenience in receiving same.</h2>
+                                Authorised Local Chemist (ALC) and convenience in receiving same.<pow
+                                    class="text-danger">*</pow>
+                                </h2>
                             <label for="rating_q11">Rate your experience:</label>
                             <div class="rating">
-                                <input type="radio" id="star1_q6" name="q6" value="1">
+                                <input type="radio" required id="star1_q6" name="q6" value="1">
                                 <label for="star1_q6">&#9733;</label>
-                                <input type="radio" id="star2_q6" name="q6" value="2">
+                                <input type="radio" required id="star2_q6" name="q6" value="2">
                                 <label for="star2_q6">&#9733;</label>
-                                <input type="radio" id="star3_q6" name="q6" value="3">
+                                <input type="radio" required id="star3_q6" name="q6" value="3">
                                 <label for="star3_q6">&#9733;</label>
-                                <input type="radio" id="star4_q6" name="q6" value="4">
+                                <input type="radio" required id="star4_q6" name="q6" value="4">
                                 <label for="star4_q6">&#9733;</label>
-                                <input type="radio" id="star5_q6" name="q6" value="5">
+                                <input type="radio" required id="star5_q6" name="q6" value="5">
                                 <label for="star5_q6">&#9733;</label>
                                 </div>
                                 <div class="rating-text">
@@ -132,7 +143,8 @@
 
                         <!-- Question 7  -->
                         <div class="step">
-                            <h2>7. Time taken in settlement of medicine claims.</h2>
+                            <h2>7. Time taken in settlement of medicine claims.<pow class="text-danger">*</pow>
+                            </h2>
                             <div class="form-group">
                                 <label for="q7">Select Time:</label>
                                 <select class="form-control" name="q7" id="q7">
@@ -148,7 +160,8 @@
 <div class="step">
     <h2>8. Time taken to receive lab investigation reports of investigations carried out in
         the
-        Polyclinic.</h2>
+        Polyclinic.<pow class="text-danger">*</pow>
+        </h2>
     <div class="form-group">
         <label for="q8">Select Time:</label>
         <select class="form-control" name="q8" id="q8">
@@ -161,18 +174,19 @@
                         </div>
                         <!-- Question 9 -->
                         <div class="step">
-                            <h2>9. Conduct/ Behaviour of doctors.</h2>
+                            <h2>9. Conduct/ Behaviour of doctors.<pow class="text-danger">*</pow>
+                            </h2>
                             <label for="rating_q9">Rate your experience:</label>
                             <div class="rating">
-                                <input type="radio" id="star1_q9" name="q9" value="1">
+                                <input type="radio" required id="star1_q9" name="q9" value="1">
                                 <label for="star1_q9">&#9733;</label>
-                                <input type="radio" id="star2_q9" name="q9" value="2">
+                                <input type="radio" required id="star2_q9" name="q9" value="2">
                                 <label for="star2_q9">&#9733;</label>
-                                <input type="radio" id="star3_q9" name="q9" value="3">
+                                <input type="radio" required id="star3_q9" name="q9" value="3">
                                 <label for="star3_q9">&#9733;</label>
-                                <input type="radio" id="star4_q9" name="q9" value="4">
+                                <input type="radio" required id="star4_q9" name="q9" value="4">
                                 <label for="star4_q9">&#9733;</label>
-                                <input type="radio" id="star5_q9" name="q9" value="5">
+                                <input type="radio" required id="star5_q9" name="q9" value="5">
                                 <label for="star5_q9">&#9733;</label>
                             </div>
                             <div class="rating-text">
@@ -182,23 +196,24 @@
                                 <label for="suggestions_q9">Suggestions/ Complaint, if any (max 200
                                     words):</label>
                                 <textarea class="form-control" name="suggestions_q9" id="suggestions_q9" rows="4"
-                                    maxlength="200"></textarea>
+                                    maxlength="550"></textarea>
                             </div>
                         </div>
                         <!-- Question 10 -->
                         <div class="step">
-                            <h2>10. Conduct/ Behaviour of ECHS Staff.</h2>
+                            <h2>10. Conduct/ Behaviour of ECHS Staff.<pow class="text-danger">*</pow>
+                            </h2>
                             <label for="rating_q10">Rate your experience:</label>
                             <div class="rating">
-                                <input type="radio" id="star1_q10" name="q10" value="1">
+                                <input type="radio" required id="star1_q10" name="q10" value="1">
                                 <label for="star1_q10">&#9733;</label>
-                                <input type="radio" id="star2_q10" name="q10" value="2">
+                                <input type="radio" required id="star2_q10" name="q10" value="2">
                                 <label for="star2_q10">&#9733;</label>
-                                <input type="radio" id="star3_q10" name="q10" value="3">
+                                <input type="radio" required id="star3_q10" name="q10" value="3">
                                 <label for="star3_q10">&#9733;</label>
-                                <input type="radio" id="star4_q10" name="q10" value="4">
+                                <input type="radio" required id="star4_q10" name="q10" value="4">
                                 <label for="star4_q10">&#9733;</label>
-                                <input type="radio" id="star5_q10" name="q10" value="5">
+                                <input type="radio" required id="star5_q10" name="q10" value="5">
                                 <label for="star5_q10">&#9733;</label>
                                 </div>
                                 <div class="rating-text">
@@ -208,24 +223,25 @@
                                     <label for="suggestions_q10">Suggestions/ Complaint, if any (max 200
                                         words):</label>
                                     <textarea class="form-control" name="suggestions_q10" id="suggestions_q10" rows="4"
-                                        maxlength="200"></textarea>
+                                        maxlength="550"></textarea>
                             </div>
                         </div>
 
                         <!-- Question 11 -->
                         <div class="step">
-                            <h2>11. Conduct/ Behaviour of OIC ECHS Polyclinic.</h2>
+                            <h2>11. Conduct/ Behaviour of OIC ECHS Polyclinic.<pow class="text-danger">*</pow>
+                            </h2>
                             <label for="rating_q11">Rate your experience:</label>
                             <div class="rating">
-                                <input type="radio" id="star1_q11" name="q11" value="1">
+                                <input type="radio" required id="star1_q11" name="q11" value="1">
                                 <label for="star1_q11">&#9733;</label>
-                                <input type="radio" id="star2_q11" name="q11" value="2">
+                                <input type="radio" required id="star2_q11" name="q11" value="2">
                                 <label for="star2_q11">&#9733;</label>
-                                <input type="radio" id="star3_q11" name="q11" value="3">
+                                <input type="radio" required id="star3_q11" name="q11" value="3">
                                 <label for="star3_q11">&#9733;</label>
-                                <input type="radio" id="star4_q11" name="q11" value="4">
+                                <input type="radio" required id="star4_q11" name="q11" value="4">
                                 <label for="star4_q11">&#9733;</label>
-                                <input type="radio" id="star5_q11" name="q11" value="5">
+                                <input type="radio" required id="star5_q11" name="q11" value="5">
                                 <label for="star5_q11">&#9733;</label>
                             </div>
                             <div class="rating-text">
@@ -235,39 +251,46 @@
                                 <label for="suggestions_q11">Suggestions/ Complaint, if any (max 200
                                     words):</label>
                                 <textarea class="form-control" name="suggestions_q11" id="suggestions_q11" rows="4"
-                                    maxlength="200"></textarea>
+                                    maxlength="550"></textarea>
                             </div>
                         </div>
 
                         <!-- Question 12-->
                         <div class="step">
-                            <h2>12.Suggestions/ Complaint for ECHS Polyclinic. </h2>
-                            <textarea id="q12" name="q12" placeholder="Max 200 words" rows="8"></textarea>
+                            <h2>12.Suggestions/ Complaint for ECHS Polyclinic. <pow class="text-danger">*</pow>
+                            </h2>
+                            <textarea id="q12" name="q12" placeholder="Max 200 words" rows="8" class="form-control"
+                                maxlength="550"></textarea>
                         </div>
 
                         <!-- Question 13 -->
                         <div class="step">
-                            <h2>13. Personal Particulars:</h2>
+                            <h2>13. Personal Particulars:<pow class="text-danger">*</pow>
+                            </h2>
 
                             <div class="form-group">
-                                <label for="echsCardNumber">ECHS Card Number:</label>
-                                <input type="text" id="echsCardNumber" name="echsCardNumber"
+                                <label for="echsCardNumber">
+                                    <pow class="text-danger">*</pow> ECHS Card Number:
+                                </label>
+                                <input type="text" required id="echsCardNumber" name="echsCardNumber"
                                     placeholder="Enter ECHS Card Number">
                             </div>
 
                             <div class="form-group">
-                                <label for="nameAsPerCard">Name as per ECHS card (optional):</label>
+                                <label for="nameAsPerCard">Name as per ECHS card :</label>
                                 <input type="text" id="nameAsPerCard" name="nameAsPerCard"
                                     placeholder="Enter Name as per ECHS card">
                             </div>
                             <div class="form-group">
-                                <label for="dateOfVisit">Date of visit:</label>
-                                <input type="date" id="dateOfVisit" name="dateOfVisit"
+                                <label for="dateOfVisit">
+                                    <pow class="text-danger">*</pow> Date of visit:
+                                </label>
+                                <input type="date" required id="dateOfVisit" name="dateOfVisit"
                                     placeholder="Enter Date of Visit (e.g., YYYY-MM-DD)">
                             </div>
 
                             <div class="form-group">
-                                <label for="mobileNumber">Mobile number (optional):</label>
+                                <label for="mobileNumber">Mobile number:</label>
                                 <input type="phone" id="mobileNumber" name="mobileNumber"
                                     placeholder="Enter Mobile Number">
                             </div>
