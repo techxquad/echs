@@ -53,16 +53,41 @@ const hospitalArray = [
 
 const counts = {};
 
+function createLineChart(ctx, label, data, backgroundColor, borderColor) {
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Poor", "Fair", "Good", "Very Good", "Excellent"],
+            datasets: [{
+                label: label,
+                data: data,
+                backgroundColor: backgroundColor,
+                borderColor: borderColor,
+                borderWidth: 4,
+                fill: false,
+                tension: 0.1, // controls the curve of the line
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
 // Function to create a bar chart
 function createBarChart(ctx, label, data, backgroundColor, borderColor) {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['1', '2', '3', '4', '5'],
+            labels: ["Poor", "Fair", "Good", "Very Good", "Excellent"],
             datasets: [{
                 label: label,
-                backgroundColor: backgroundColor,
-                borderColor: borderColor,
+                backgroundColor: ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)'],
+                // borderColor: borderColor,
                 borderWidth: 1,
                 data: data
             }]
@@ -144,11 +169,11 @@ function getData() {
 
 function graph() {
     // Bar Charts for Health, Medicine, and Cleaning with different colors
-    createBarChart(
+    createLineChart(
         document.getElementById('healthChart').getContext('2d'),
         'Health',
         counts.Health,
-        ['rgba(255,99,132,0.2)', 'rgba(255,159,64,0.2)', 'rgba(255,205,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(54,162,235,0.2)'],
+        // ['rgba(255,99,132,0.2)', 'rgba(255,159,64,0.2)', 'rgba(255,205,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(54,162,235,0.2)'],
         ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)']
     );
 
@@ -156,7 +181,7 @@ function graph() {
         document.getElementById('medicineChart').getContext('2d'),
         'Medicine',
         counts.Medicine,
-        ['rgba(153,102,255,0.2)', 'rgba(201,203,207,0.2)', 'rgba(255,99,132,0.2)', 'rgba(255,205,86,0.2)', 'rgba(54,162,235,0.2)'],
+        // ['rgba(153,102,255,0.2)', 'rgba(201,203,207,0.2)', 'rgba(255,99,132,0.2)', 'rgba(255,205,86,0.2)', 'rgba(54,162,235,0.2)'],
         ['rgba(153,102,255,1)', 'rgba(201,203,207,1)', 'rgba(255,99,132,1)', 'rgba(255,205,86,1)', 'rgba(54,162,235,1)']
     );
 
@@ -173,7 +198,7 @@ function graph() {
         document.getElementById('donutChart').getContext('2d'),
         'Paisa',
         [counts.paisa.yes, counts.paisa.no],
-        ['rgba(255,159,64,0.2)', 'rgba(153,102,255,0.2)'],
+        // ['rgba(255,159,64,0.2)', 'rgba(153,102,255,0.2)'],
         ['rgba(255,159,64,1)', 'rgba(153,102,255,1)']
     );
 
@@ -182,7 +207,7 @@ function graph() {
         document.getElementById('pieChart').getContext('2d'),
         'Paisa',
         [counts.paisa.yes, counts.paisa.no],
-        ['rgba(54,162,235,0.2)', 'rgba(255,205,86,0.2)'],
+        // ['rgba(54,162,235,0.2)', 'rgba(255,205,86,0.2)'],
         ['rgba(54,162,235,1)', 'rgba(255,205,86,1)']
     );
 }
