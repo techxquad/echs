@@ -4,6 +4,14 @@ body {
     background-color: #f0f1f3;
 }
 
+#export,
+#download {
+    display: none;
+}
+
+.col-md-4 {
+    padding: 0px;
+}
 .navbar-fixed-top {
     position: fixed;
     top: 0;

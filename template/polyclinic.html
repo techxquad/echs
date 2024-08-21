@@ -67,34 +67,37 @@
                 </div>
                 <div class="col-md-3 align-self-end ">
 
-                    <button class="btn btn-success" onclick="exportData()"><i
+                    <button class="btn btn-success" id="export" onclick="exportData(hospitalArray)"><i
                             class="bi bi-file-earmark-spreadsheet"></i> Export
                         Data</button>
-                    <button class="btn btn-danger mt-1" onclick="downloadPDF()"><i class="bi bi-file-pdf"></i>
+                    <button class="btn btn-danger mt-1" id="download" onclick="downloadPDF()"><i
+                            class="bi bi-file-pdf"></i>
                         Download
                         PDF</button>
                 </div>
             </div>
 
             <!-- Row for charts -->
-            <div class="row pt-4">
+            <div class="row pt-4" id="downloadDiv">
                 <div class="col-md-4">
-                    <canvas id="chart1" height="180"></canvas>
+                    <!-- Canvases for the Bar Charts -->
+                    <canvas class="" id="healthChart" width="400" height="250"></canvas>
+                    </div>
+                <div class="col-md-4">
+                    <canvas class="" id="medicineChart" width="400" height="250"></canvas>
                 </div>
                 <div class="col-md-4">
-                    <canvas id="chart2" height="180"></canvas>
+                    <canvas class="" id="cleaningChart" width="400" height="250"></canvas>
                 </div>
                 <div class="col-md-4">
-                    <canvas id="chart3" height="180"></canvas>
+                    <!-- Canvas for the Donut Chart -->
+                    <canvas id="donutChart" width="400" height="200"></canvas>
                 </div>
-            </div>
-            <!-- Download PDF Button -->
-            <!-- <div class="row mt-4">
-                <div class="col-md-12 text-center">
-                    <button class="btn btn-danger" onclick="downloadPDF()"><i class="bi bi-file-pdf"></i> Download
-                        PDF</button>
+                <div class="col-md-4">
+                    <!-- Canvas for the Pie Chart -->
+                    <canvas id="pieChart" width="400" height="200"></canvas>
                 </div>
-            </div> -->
+                </div>
         </div>
     </div>
     <!-- Footer -->
@@ -119,7 +122,9 @@
         });
     </script>
 
-    <script>
+<script src="./assert/js/graph.js"></script>
+
+<!-- <script>
         function getData() {
             // Dummy data for the charts
             const data1 = {
@@ -177,37 +182,6 @@
                 }
             });
         }
-
-        function exportData() {
-            const data = [
-                ["Month", "Dataset 1", "Dataset 2", "Dataset 3"],
-                ["Jan", 12, "", ""],
-                ["Feb", 19, "", ""],
-                ["Mar", 3, "", ""],
-                ["Apr", 5, "", ""],
-                ["May", 2, "", ""],
-                ["Jun", 3, "", ""],
-                ["Jul", "", 15, ""],
-                ["Aug", "", 10, ""],
-                ["Sep", "", 7, ""],
-                ["Oct", "", 8, ""],
-                ["Nov", "", 6, ""],
-                ["Dec", "", 12, ""],
-                ["Q1", "", "", 22],
-                ["Q2", "", "", 29],
-                ["Q3", "", "", 30],
-                ["Q4", "", "", 25],
-            ];
-
-            // Create worksheet
-            const ws = XLSX.utils.aoa_to_sheet(data);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Data");
-
-            // Export Excel file
-            XLSX.writeFile(wb, "chart_data.xlsx");
-        }
-
         async function downloadPDF() {
             const {
                 jsPDF
@@ -239,7 +213,7 @@
             // Download the PDF
             pdf.save('charts.pdf');
         }
-    </script>
+    </script> -->
 </body>
 
 </html>
