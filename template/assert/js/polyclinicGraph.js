@@ -1,33 +1,47 @@
 
 const polyclinicQuestions = {
-    'Q1': 'I am q1',
-    'Q2': 'I am q2',
-    'Q3': 'I am q3',
-    'Q4': 'I am q4',
-    'Q5': 'I am q5',
-    'Q6': 'I am q6',
-    'Q7': 'I am q7',
-    'Q8': 'I am q8',
-    'Q9': 'I am q9',
-    'Q10': 'I am q10',
-    'Q11': 'I am q11',
-    'Q12': 'I am q12',
-    'Q13': 'I am q13',
-    'Q14': 'I am q14',
-    'Q15': 'I am q15',
-    'Q16': 'I am q16',
-    'Q17': 'I am q17',
-    'Q18': 'I am q18',
-    'Q19': 'I am q19',
-    'Q20': 'I am q20',
-    'Q21': 'I am q21',
-    'Q22': 'I am q22',
-    'Q23': 'I am q23',
-    'Q24': 'I am q24',
-    'Q25': 'I am q25',
-    'Q26': 'I am q26',
-    'Q27': 'I am q27',
-    'Q28': 'I am q28'
+    'Q1': 'Waiting time at registration counter.',
+    'Q2': 'Time taken for doctor’s consultation post registration.',
+    'Q3': 'Time taken to obtain medicines from pharmacy post doctor’s consultation.',
+    'Q4': 'Availability of medicines in the dispensary.',
+    'Q5': 'Time taken to provide medicines not available in the dispensary.',
+    'Q6': 'If all the medicines are not available in the dispensary, awareness about provision of medicines through Authorised Local Chemist (ALC) and convenience in receiving same.',
+    'Q7': 'Time taken in settlement of medicine claims.',
+    'Q8': 'Time taken to receive lab investigation reports of investigations carried out in the Polyclinic.',
+    'Q9': 'Conduct/ Behaviour of doctors.',
+    'Q10': 'Conduct/ Behaviour of ECHS Staff.',
+    'Q11': 'Conduct/ Behaviour of OIC ECHS Polyclinic.',
+    'Q12': 'Suggestions/ Complaint for ECHS Polyclinic. (max 200 words)',
+    'Q13': 'Personal Particulars:-',
+    'Q13_a':"ECHS Card Number:",
+    'Q13_b':"Name as per ECHS card (optional)",
+    'Q13_c':"Date of visit",
+    'Q13_d':"Mobile number (optional)"
+    
+}
+
+const polyclinicShortQuestions = {
+   
+    'Q1': "Waiting time at registration counter.",
+    'Q2': "Doctor consultation time post-registration.",
+    'Q3': "Pharmacy wait time post-consultation.",
+    'Q4': "Medicine availability in dispensary.",
+    'Q5': "Time for unavailable medicine provision.",
+    'Q6': "ALC awareness and convenience.",
+    'Q7': "Medicine claim settlement time.",
+    'Q8': "Lab report receipt time.",
+    'Q9': "Doctor's conduct/behavior.",
+    'Q10': "ECHS staff conduct/behavior.",
+    'Q11': "OIC ECHS conduct/behavior.",
+    'Q12': "Polyclinic suggestions/complaints.",
+    'Q13': "Personal particulars.",
+    'Q13_a':"ECHS Card Number:",
+    'Q13_b':"Name as per ECHS card ",
+    'Q13_c':"Date of visit",
+    'Q13_d':"Mobile number "
+
+
+
 }
 
 
