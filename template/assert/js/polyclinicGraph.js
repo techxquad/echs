@@ -97,7 +97,8 @@ function polyclinicGraph() {
                     // ['rgba(255,159,64,0.2)', 'rgba(153,102,255,0.2)'],
                     ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)'],
                     ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
-                    Object.keys(counts[key])
+                    Object.keys(counts[key]),
+                    polyclinicQuestions[key]
                 );
 
             } else {
@@ -107,6 +108,9 @@ function polyclinicGraph() {
                     [counts[key].yes, counts[key].no],
                     // ['rgba(54,162,235,0.2)', 'rgba(255,205,86,0.2)'],
                     ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)'],
+                    ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
+
+                    polyclinicQuestions[key]
                 );
             }
 
@@ -118,7 +122,9 @@ function polyclinicGraph() {
                 Object.keys(counts[key]),
                 counts[key],
                 // ['rgba(255,99,132,0.2)', 'rgba(255,159,64,0.2)', 'rgba(255,205,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(54,162,235,0.2)'],
-                ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)']
+                ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)'],
+                ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
+                polyclinicQuestions[key]
             );
         }
 

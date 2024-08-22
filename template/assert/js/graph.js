@@ -35,7 +35,7 @@ function createDiv(questionsDiv) {
 }
 
 // Function to create a Line chart
-function createLineChart(ctx, label, x_label, data, backgroundColor, borderColor) {
+function createLineChart(ctx, label, x_label, data, backgroundColor, borderColor, chartTitle) {
     new Chart(ctx, {
         type: 'line',
         data: {
@@ -44,19 +44,30 @@ function createLineChart(ctx, label, x_label, data, backgroundColor, borderColor
                 label: label,
                 data: data,
                 backgroundColor: backgroundColor,
-                borderColor: borderColor,
+                // borderColor: borderColor,
                 borderWidth: 4,
                 fill: false,
                 tension: 0.1, // controls the curve of the line
             }]
         },
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+            plugins: {
+                title: {
+                    display: true,
+                    text: chartTitle,
+                    font: {
+                        size: 18 // You can adjust the size as needed
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
+
             }
         }
+
     });
 }
 
@@ -85,7 +96,7 @@ function createBarChart(ctx, label, data, backgroundColor, borderColor) {
 }
 
 // Function to create a donut chart
-function createDonutChart(ctx, label, data, backgroundColor, borderColor, labels) {
+function createDonutChart(ctx, label, data, backgroundColor, borderColor, labels, chartTitle) {
     new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -97,12 +108,23 @@ function createDonutChart(ctx, label, data, backgroundColor, borderColor, labels
                 borderWidth: 1,
                 data: data
             }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: chartTitle,
+                    font: {
+                        size: 18 // You can adjust the size as needed
+                    }
+                }
+            }
         }
     });
 }
 
-// Function to create a pie chart
-function createPieChart(ctx, label, data, backgroundColor, borderColor) {
+
+function createPieChart(ctx, label, data, backgroundColor, borderColor, chartTitle) {
     new Chart(ctx, {
         type: 'pie',
         data: {
@@ -114,9 +136,21 @@ function createPieChart(ctx, label, data, backgroundColor, borderColor) {
                 borderWidth: 1,
                 data: data
             }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: chartTitle,
+                    font: {
+                        size: 18 // You can adjust the size as needed
+                    }
+                }
+            }
         }
     });
 }
+
 
 
 // export data to excle
