@@ -20,46 +20,14 @@
 
 
 // ];
-
 const counts = {};
 
-const questions = {
-    'Q1': 'I am q1',
-    'Q2': 'I am q2',
-    'Q3': 'I am q3',
-    'Q4': 'I am q4',
-    'Q5': 'I am q5',
-    'Q6': 'I am q6',
-    'Q7': 'I am q7',
-    'Q8': 'I am q8',
-    'Q9': 'I am q9',
-    'Q10': 'I am q10',
-    'Q11': 'I am q11',
-    'Q12': 'I am q12',
-    'Q13': 'I am q13',
-    'Q14': 'I am q14',
-    'Q15': 'I am q15',
-    'Q16': 'I am q16',
-    'Q17': 'I am q17',
-    'Q18': 'I am q18',
-    'Q19': 'I am q19',
-    'Q20': 'I am q20',
-    'Q21': 'I am q21',
-    'Q22': 'I am q22',
-    'Q23': 'I am q23',
-    'Q24': 'I am q24',
-    'Q25': 'I am q25',
-    'Q26': 'I am q26',
-    'Q27': 'I am q27',
-    'Q28': 'I am q28'
-}
 
-
-function createDiv() {
+function createDiv(questionsDiv) {
     let graphDiv = ''
-    for (const key in questions) {
+    for (const key in questionsDiv) {
         if (counts.hasOwnProperty(key)) {
-            graphDiv += '<div class="col-md-4"> <canvas class="" id="' + key + '" width="400" height="400"></canvas> </div>'
+            graphDiv += '<div class="col-md-4"> <canvas class="bg-white shadow m-2 p-2" id="' + key + '" width="400" height="400"></canvas> </div>'
         }
     }
     document.getElementById('graphs').innerHTML = graphDiv;
@@ -67,11 +35,11 @@ function createDiv() {
 }
 
 // Function to create a Line chart
-function createLineChart(ctx, label, data, backgroundColor, borderColor) {
+function createLineChart(ctx, label, x_label, data, backgroundColor, borderColor) {
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Poor", "Fair", "Good", "Very Good", "Excellent"],
+            labels: x_label,
             datasets: [{
                 label: label,
                 data: data,
@@ -150,112 +118,9 @@ function createPieChart(ctx, label, data, backgroundColor, borderColor) {
     });
 }
 
-function getData() {
-    hospitalArray.forEach(hospital => {
-        Object.keys(hospital).forEach(key => {
-
-            if (key !== 'Q24' && key !== 'Q26' && key !== 'Q12' && key !== 'Q1' && key !== 'Q10' && key !== 'Q28_a' && key !== 'Q28_b' && key !== 'Q28_c' && key !== 'Q28_d' && key !== 'created_at' && key !== 'feedback_id' && key !== 'language' && key !== 'status' && key !== 'updated_at') {  // Skip 'ID' and 'Color' fields
-
-            // if (!counts[key]) {
-            //     counts[key] = key === "Q2" || key == "Q9" || key == "Q14" || key == "Q23" || key == "Q25" ? { yes: 0, no: 0 } : [0, 0, 0, 0, 0];
-            // }
-                if (!counts[key]) {
-                    if (key === "Q3" || key === "Q5" || key === "Q6" || key === "Q2" || key === "Q9" || key === "Q14" || key === "Q23" || key === "Q25") {
-                        if (key === "Q3")
-                            counts[key] = { Upto_15_mins: 0, s: 1 };
-                        if (key === "Q5")
-                            counts[key] = { ipd: 0, opd: 0 };
-                        if (key === "Q6")
-                            counts[key] = { ipd: 0, opd: 0 };
-                        else
-                            counts[key] = { yes: 0, no: 0 };
-
-                    } else {
-                        counts[key] = [0, 0, 0, 0, 0];
-                    }
-                }
-
-
-                if (key === "Q3" || key === "Q5" || key === "Q6" || key === "Q2" || key == "Q9" || key == "Q14" || key == "Q23" || key == "Q25") {
-                    counts[key][hospital[key]]++;
-                } else {
-                    counts[key][hospital[key] - 1]++;
-                }
-            }
-        });
-    });
-    createDiv();
-    graph();
-
-    // change button visiablity
-    exportdata = document.getElementById("export");
-    downloaddata = document.getElementById("download");
-    exportdata.style.display = "block";
-    downloaddata.style.display = "block";
-
-    var canvases = document.querySelectorAll("canvas");
-    canvases.forEach(function (canvas) {
-        canvas.classList.add("bg-white", "shadow", "m-2", "p-2");
-    });
-
-
-}
-
-function graph() {
-
-    Object.keys(counts).forEach(key => {
-
-        // create div for graph 
-
-
-
-        if (counts[key].length == 5) {
-
-            createLineChart(
-                document.getElementById(key).getContext('2d'),
-                questions[key],
-                counts[key],
-                // ['rgba(255,99,132,0.2)', 'rgba(255,159,64,0.2)', 'rgba(255,205,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(54,162,235,0.2)'],
-                ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)']
-            );
-            // createBarChart(
-            //     document.getElementById(key).getContext('2d'),
-            //    questions[key],
-            //     counts[key],
-            //     // ['rgba(153,102,255,0.2)', 'rgba(201,203,207,0.2)', 'rgba(255,99,132,0.2)', 'rgba(255,205,86,0.2)', 'rgba(54,162,235,0.2)'],
-            //     ['rgba(153,102,255,1)', 'rgba(201,203,207,1)', 'rgba(255,99,132,1)', 'rgba(255,205,86,1)', 'rgba(54,162,235,1)']
-            // );
-            // console.log('bar');
-        } else {
-            // opd 
-            if (key === 'Q6') {
-                createDonutChart(
-                    document.getElementById(key).getContext('2d'),
-                    questions[key],
-                    [counts[key].ipd, counts[key].opd],
-                    // ['rgba(255,159,64,0.2)', 'rgba(153,102,255,0.2)'],
-                    ['rgba(255,159,64,1)', 'rgba(153,102,255,1)'],
-                    ['#f0f1f3', '#f0f1f3'],
-                    ['Ipd', 'Opd']
-                );
-            } else {
-                createPieChart(
-                    document.getElementById(key).getContext('2d'),
-                    questions[key],
-                    [counts[key].yes, counts[key].no],
-                    // ['rgba(54,162,235,0.2)', 'rgba(255,205,86,0.2)'],
-                    ['rgba(54,162,235,1)', 'rgba(255,205,86,1)']
-                );
-            }
-            // console.log("pie")
-        }
-    })
-
-}
-
 
 // export data to excle
-function exportData(data) {
+function exportData(data, questions) {
     if (!Array.isArray(data) || data.length === 0 || typeof data[0] !== 'object') {
         console.error("Data must be an array of objects.");
         return;
@@ -264,9 +129,12 @@ function exportData(data) {
     // Extract headers from the first object's keys
     const headers = Object.keys(data[0]);
 
+    // Map headers to their corresponding values in the questions object
+    const mappedHeaders = headers.map(header => questions[header] || header);
+
     // Map data to an array of arrays format, including headers
     const aoaData = [
-        headers, // first row for headers
+        mappedHeaders, // first row for mapped headers
         ...data.map(obj => headers.map(header => obj[header])) // subsequent rows for data
     ];
 
@@ -280,6 +148,7 @@ function exportData(data) {
     // Export the workbook to an Excel file
     XLSX.writeFile(wb, "chart_data.xlsx");
 }
+
 
 // download div 
 function downloadPDF() {

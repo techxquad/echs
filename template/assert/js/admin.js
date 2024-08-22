@@ -8,3 +8,4 @@ document.querySelector('.navbar-toggler').addEventListener('click', function () 
     const sidebar = document.getElementById('sidebarMenu');
     sidebar.classList.toggle('active');
 });
+
