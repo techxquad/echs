@@ -135,38 +135,57 @@ function empanelledGraph() {
             if (key === 'Q3' || key === 'Q5' || key === 'Q6') {
                 createDonutChart(
                     document.getElementById(key).getContext('2d'),
-                    empanelledQuestions[key],
+                    empanelledShortQuestions[key],
                     Object.values(counts[key]),
                     // ['rgba(255,159,64,0.2)', 'rgba(153,102,255,0.2)'],
-                    ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)'],
+                    ['#2196f3',
+                        '#ffa000',
+                        '#00c853',
+                        '#ff0000', ' #ff4081'],
                     ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
                     Object.keys(counts[key]),
-                    empanelledQuestions[key]
+                    empanelledShortQuestions[key]
                 );
 
             } else {
                 createPieChart(
                     document.getElementById(key).getContext('2d'),
-                    empanelledQuestions[key],
+                    empanelledShortQuestions[key],
                     [counts[key].yes, counts[key].no],
                     // ['rgba(54,162,235,0.2)', 'rgba(255,205,86,0.2)'],
-                    ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)'],
+                    ['#00c853', '#ff0000'],
                     ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
 
-                    empanelledQuestions[key]);
+                    empanelledShortQuestions[key]);
             }
 
         }
         else {
+            let a = counts[key];
+
+            const requiredKeys = ['1', '2', '3', '4', '5'];
+
+            // Ensure each required key exists in the object with a value of 0 if it's missing
+            requiredKeys.forEach(key => {
+                if (!(key in a)) {
+                    a[key] = 0;
+                }
+            });
+
+            console.log(a);
+
             createLineChart(
                 document.getElementById(key).getContext('2d'),
-                empanelledQuestions[key],
+                empanelledShortQuestions[key],
                 Object.keys(counts[key]),
                 counts[key],
                 // ['rgba(255,99,132,0.2)', 'rgba(255,159,64,0.2)', 'rgba(255,205,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(54,162,235,0.2)'],
-                ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)'],
+                ['#ff0000', ' #ff4081',
+                    '#ffa000', '#2196f3'
+                    ,
+                    '#00c853'],
                 ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
-                empanelledQuestions[key]);
+                empanelledShortQuestions[key]);
         }
 
     })

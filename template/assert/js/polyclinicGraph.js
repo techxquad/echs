@@ -49,11 +49,11 @@ const polyclinicShortQuestions = {
 function polyclinicGetData() {
 
 
-    empanelledData.forEach(hospital => {
+    polyclinicData.forEach(hospital => {
         Object.keys(hospital).forEach(key => {
 
-            if (key !== 'Q24' && key !== 'Q26' && key !== 'Q12' && key !== 'Q1' && key !== 'Q10' &&
-                key !== 'Q28_a' && key !== 'Q28_b' && key !== 'Q28_c' && key !== 'Q28_d' &&
+            if (key !== 'Q12' && key !== 'Q13_a' && key !== 'Q13_b' && key !== 'Q13_c' && key !== 'Q13_d' &&
+                key !== 'Q9_suggestion' && key !== 'Q10_suggestion' && key !== 'Q11_suggestion' &&
                 key !== 'created_at' && key !== 'feedback_id' && key !== 'language' &&
                 key !== 'status' && key !== 'updated_at') {
 
@@ -102,43 +102,70 @@ function polyclinicGraph() {
 
     Object.keys(counts).forEach(key => {
 
-        if (key === 'Q3' || key === 'Q5' || key === 'Q6' || key === "Q2" || key == "Q9" || key == "Q14" || key == "Q23" || key == "Q25") {
-            if (key === 'Q3' || key === 'Q5' || key === 'Q6') {
-                createDonutChart(
-                    document.getElementById(key).getContext('2d'),
-                    polyclinicQuestions[key],
-                    Object.values(counts[key]),
-                    // ['rgba(255,159,64,0.2)', 'rgba(153,102,255,0.2)'],
-                    ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)'],
-                    ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
-                    Object.keys(counts[key]),
-                    polyclinicQuestions[key]
-                );
+        if (key === 'Q1' || key === 'Q2' || key === 'Q3' || key === "Q4" || key == "Q5" || key == "Q7" || key == "Q8") {
+            createDonutChart(
+                document.getElementById(key).getContext('2d'),
+                polyclinicShortQuestions[key],
+                Object.values(counts[key]),
+                // ['rgba(255,159,64,0.2)', 'rgba(153,102,255,0.2)'],
+                ['#2196f3',
+                    '#ffa000',
+                    '#00c853',
+                    '#ff0000', ' #ff4081'],
+                ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
+                Object.keys(counts[key]),
+                polyclinicShortQuestions[key]
+            );
+            // if (key === 'Q1' || key === 'Q2' || key === 'Q3' || key === 'Q5' || key === 'Q7' || key === 'Q8') {
+            //     createDonutChart(
+            //         document.getElementById(key).getContext('2d'),
+            //         polyclinicQuestions[key],
+            //         Object.values(counts[key]),
+            //         // ['rgba(255,159,64,0.2)', 'rgba(153,102,255,0.2)'],
+            //         ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)'],
+            //         ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
+            //         Object.keys(counts[key]),
+            //         polyclinicQuestions[key]
+            //     );
 
-            } else {
-                createPieChart(
-                    document.getElementById(key).getContext('2d'),
-                    polyclinicQuestions[key],
-                    [counts[key].yes, counts[key].no],
-                    // ['rgba(54,162,235,0.2)', 'rgba(255,205,86,0.2)'],
-                    ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)'],
-                    ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
+            // } else {
+            //     createPieChart(
+            //         document.getElementById(key).getContext('2d'),
+            //         polyclinicQuestions[key],
+            //         [counts[key].yes, counts[key].no],
+            //         // ['rgba(54,162,235,0.2)', 'rgba(255,205,86,0.2)'],
+            //          ['#00c853', '#ff0000'],
+            //         ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
 
-                    polyclinicQuestions[key]
-                );
-            }
+            //         polyclinicQuestions[key]
+            //     );
+            // }
 
         }
         else {
+            // if 1,2,3,4,5 not in object then add key with 0 value 
+            let a = counts[key];
+
+            const requiredKeys = ['1', '2', '3', '4', '5'];
+
+            // Ensure each required key exists in the object with a value of 0 if it's missing
+            requiredKeys.forEach(key => {
+                if (!(key in a)) {
+                    a[key] = 0;
+                }
+            });
             createLineChart(
                 document.getElementById(key).getContext('2d'),
-                polyclinicQuestions[key],
+                polyclinicShortQuestions[key],
                 Object.keys(counts[key]),
                 counts[key],
                 // ['rgba(255,99,132,0.2)', 'rgba(255,159,64,0.2)', 'rgba(255,205,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(54,162,235,0.2)'],
-                ['rgba(255,99,132,1)', 'rgba(255,159,64,1)', 'rgba(255,205,86,1)', 'rgba(75,192,192,1)', 'rgba(54,162,235,1)'],
+                ['#ff0000', ' #ff4081',
+                    '#ffa000', '#2196f3'
+                    ,
+                    '#00c853'],
                 ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
-                polyclinicQuestions[key]
+                polyclinicShortQuestions[key]
             );
         }
 

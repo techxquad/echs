@@ -39,15 +39,17 @@ function createLineChart(ctx, label, x_label, data, backgroundColor, borderColor
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: x_label,
+            // labels: x_label,
             datasets: [{
-                label: label,
+                label: "",
                 data: data,
                 backgroundColor: backgroundColor,
                 // borderColor: borderColor,
                 borderWidth: 4,
                 fill: false,
-                tension: 0.1, // controls the curve of the line
+                tension: 0.1, // Controls the curve of the line
+                pointRadius: 6, // Increase this value to make the data points larger
+                pointHoverRadius: 8
             }]
         },
         options: {
@@ -56,8 +58,11 @@ function createLineChart(ctx, label, x_label, data, backgroundColor, borderColor
                     display: true,
                     text: chartTitle,
                     font: {
-                        size: 18 // You can adjust the size as needed
+                        size: 15 // You can adjust the size as needed
                     }
+                },
+                legend: {
+                    display: false // Hides the legend, removing the rectangle button
                 },
                 scales: {
                     y: {
@@ -105,7 +110,7 @@ function createDonutChart(ctx, label, data, backgroundColor, borderColor, labels
                 label: label,
                 backgroundColor: backgroundColor,
                 borderColor: borderColor,
-                borderWidth: 1,
+                borderWidth: 5,
                 data: data
             }]
         },
@@ -115,7 +120,7 @@ function createDonutChart(ctx, label, data, backgroundColor, borderColor, labels
                     display: true,
                     text: chartTitle,
                     font: {
-                        size: 18 // You can adjust the size as needed
+                        size: 15 // You can adjust the size as needed
                     }
                 }
             }
@@ -133,7 +138,7 @@ function createPieChart(ctx, label, data, backgroundColor, borderColor, chartTit
                 label: label,
                 backgroundColor: backgroundColor,
                 borderColor: borderColor,
-                borderWidth: 1,
+                borderWidth: 5,
                 data: data
             }]
         },
@@ -143,7 +148,7 @@ function createPieChart(ctx, label, data, backgroundColor, borderColor, chartTit
                     display: true,
                     text: chartTitle,
                     font: {
-                        size: 18 // You can adjust the size as needed
+                        size: 15 // You can adjust the size as needed
                     }
                 }
             }
@@ -186,12 +191,37 @@ function exportData(data, questions) {
 
 // download div 
 function downloadPDF() {
-// var divContents = document.getElementById("downloadDiv").innerHTML;
-// var originalContents = document.body.innerHTML;
+    // Get the div content
+    // var printContents = document.querySelector('canvas').innerHTML;
 
-// document.body.innerHTML = divContents;
+    var graphDiv = document.getElementById('graphs');
+    var printContents = graphDiv.innerHTML;
 
-// window.print();
+    // Create a new window
+    var printWindow = window.open('', '', 'height=600,width=800');
 
-// document.body.innerHTML = originalContents;
+    // Prepare the new window document
+    printWindow.document.write('<html><head><title>Print Graph</title>');
+    printWindow.document.write('</head><body >');
+    printWindow.document.write('<div id="print-content">' + printContents + '</div>');
+    printWindow.document.write('<script>document.getElementById("print-content").style.display="block";</script>');
+    printWindow.document.write('</body></html>');
+
+    // Close the document to trigger the browser to render the content
+    printWindow.document.close();
+
+    // Wait for the content to fully load before printing
+    printWindow.onload = function () {
+        printWindow.focus(); // Ensure the print window is in focus
+        printWindow.print(); // Trigger the print dialog
+    };
+}
+
+// Optionally, wait for the canvas to be fully drawn before printing
+window.onload = function () {
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+    // Example drawing code, replace with your actual drawing logic
+    ctx.fillStyle = '#FF0000';
+    ctx.fillRect(10, 10, 150, 100);
 }
