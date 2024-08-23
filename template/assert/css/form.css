@@ -6,7 +6,28 @@ h2 {
     font-size: larger;
 }
 
+.photoDiv {
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+}
 
+/* .photo {
+    width: 300px;
+    height: 300px;
+    float: right;
+} */
+
+.step {
+    height: 500px;
+    overflow: scroll;
+
+}
+
+.step::-webkit-scrollbar {
+    display: none;
+    /* Hides scrollbar for webkit browsers */
+}
 /* Progress Bar Container */
 .progress-container {
     width: 100%;
