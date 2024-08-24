@@ -169,39 +169,49 @@ function exportData(data, questions, name = "Raw Data") {
     const loadingSpinner = document.getElementById("loadingSpinner");
     loadingSpinner.style.display = "block";
 
-    // Proceed with the export process
-    // Specify the columns to remove by their header names
-    const columnsToRemove = ["feedback_id", "status", "updated_at", "language"]; // Replace with actual column names you want to remove
+    // Create a promise to handle the export process
+    const exportPromise = new Promise((resolve) => {
+        // Proceed with the export process
+        const columnsToRemove = ["feedback_id", "status", "updated_at", "language"]; // Replace with actual column names you want to remove
 
-    // Extract headers from the first object's keys, excluding unwanted columns
-    const headers = Object.keys(data[0]).filter(header => !columnsToRemove.includes(header));
+        // Extract headers from the first object's keys, excluding unwanted columns
+        const headers = Object.keys(data[0]).filter(header => !columnsToRemove.includes(header));
 
-    // Map headers to their corresponding values in the questions object
-    const mappedHeaders = ["Serial No.", ...headers.map(header => questions[header] || header)];
+        // Map headers to their corresponding values in the questions object
+        const mappedHeaders = ["Serial No.", ...headers.map(header => questions[header] || header)];
 
-    // Map data to an array of arrays format, including headers, and add serial numbers
-    const aoaData = [
-        mappedHeaders, // first row for mapped headers
-        ...data.map((obj, index) => [
-            index + 1, // Serial number
-            ...headers.map(header => obj[header])
-        ]) // subsequent rows for data
-    ];
+        // Map data to an array of arrays format, including headers, and add serial numbers
+        const aoaData = [
+            mappedHeaders, // first row for mapped headers
+            ...data.map((obj, index) => [
+                index + 1, // Serial number
+                ...headers.map(header => obj[header])
+            ]) // subsequent rows for data
+        ];
 
-    // Create worksheet from aoaData
-    const ws = XLSX.utils.aoa_to_sheet(aoaData);
+        // Create worksheet from aoaData
+        const ws = XLSX.utils.aoa_to_sheet(aoaData);
 
-    // Create a new workbook and append the worksheet
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Data");
+        // Create a new workbook and append the worksheet
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Data");
 
-    // Export the workbook to an Excel file
-    XLSX.writeFile(wb, name + ".xlsx");
+        // Export the workbook to an Excel file
+        XLSX.writeFile(wb, name + ".xlsx");
 
-    // Hide the loading spinner after download is triggered
-    // Since XLSX.writeFile triggers a download, we assume download completion is immediate
-    loadingSpinner.style.display = "none";
+        // Resolve the promise after a short delay
+        setTimeout(() => resolve(), 2000); // Adjust the delay as needed
+    });
+
+    // Handle the promise to hide the loading spinner
+    exportPromise.then(() => {
+        loadingSpinner.style.display = "none";
+    }).catch((error) => {
+        console.error("Error exporting data:", error);
+        loadingSpinner.style.display = "none"; // Hide spinner even if there's an error
+    });
 }
+
 
 
 
