@@ -159,22 +159,33 @@ function createPieChart(ctx, label, data, backgroundColor, borderColor, chartTit
 
 
 // export data to excle
-function exportData(data, questions) {
+function exportData(data, questions, name = "Raw Data") {
     if (!Array.isArray(data) || data.length === 0 || typeof data[0] !== 'object') {
         console.error("Data must be an array of objects.");
         return;
     }
 
-    // Extract headers from the first object's keys
-    const headers = Object.keys(data[0]);
+    // Show the loading spinner
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    loadingSpinner.style.display = "block";
+
+    // Proceed with the export process
+    // Specify the columns to remove by their header names
+    const columnsToRemove = ["feedback_id", "status", "updated_at", "language"]; // Replace with actual column names you want to remove
+
+    // Extract headers from the first object's keys, excluding unwanted columns
+    const headers = Object.keys(data[0]).filter(header => !columnsToRemove.includes(header));
 
     // Map headers to their corresponding values in the questions object
-    const mappedHeaders = headers.map(header => questions[header] || header);
+    const mappedHeaders = ["Serial No.", ...headers.map(header => questions[header] || header)];
 
-    // Map data to an array of arrays format, including headers
+    // Map data to an array of arrays format, including headers, and add serial numbers
     const aoaData = [
         mappedHeaders, // first row for mapped headers
-        ...data.map(obj => headers.map(header => obj[header])) // subsequent rows for data
+        ...data.map((obj, index) => [
+            index + 1, // Serial number
+            ...headers.map(header => obj[header])
+        ]) // subsequent rows for data
     ];
 
     // Create worksheet from aoaData
@@ -185,8 +196,13 @@ function exportData(data, questions) {
     XLSX.utils.book_append_sheet(wb, ws, "Data");
 
     // Export the workbook to an Excel file
-    XLSX.writeFile(wb, "chart_data.xlsx");
+    XLSX.writeFile(wb, name + ".xlsx");
+
+    // Hide the loading spinner after download is triggered
+    // Since XLSX.writeFile triggers a download, we assume download completion is immediate
+    loadingSpinner.style.display = "none";
 }
+
 
 
 // download div 

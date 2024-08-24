@@ -31,12 +31,14 @@ const empanelledQuestions = {
     'Q28_a': 'ECHS Card Number',
     'Q28_b': 'Name as per ECHS card',
     'Q28_c': 'Date of visit',
-    'Q28_d': 'Mobile number'
+    'Q28_d': 'Mobile number',
+    'created_at': "Feedback Date"
+
 }
 
 
 const empanelledShortQuestions = {
-    'Q1': "Select hospital from dropdown.",
+    'Q1': "Hospital from dropdown.",
     'Q2': "Online/Tele appointment availability?",
     'Q3': "Registration counter waiting time.",
     'Q4': "Hospital staff conduct/behavior.",
@@ -70,10 +72,6 @@ const empanelledShortQuestions = {
     'Q28_d': "Mobile number."
 };
 
-
-// empanelledData
-// empanelledQuestions 
-// empanelledGetData()
 
 function empanelledGetData() {
 
@@ -119,12 +117,6 @@ function empanelledGetData() {
     exportdata.style.display = "block";
     downloaddata.style.display = "block";
 
-    // var canvases = document.querySelectorAll("canvas");
-    // canvases.forEach(function (canvas) {
-    //     canvas.classList.add("bg-white", "shadow", "m-2", "p-2");
-    // });
-
-
 }
 
 function empanelledGraph() {
@@ -137,11 +129,7 @@ function empanelledGraph() {
                     document.getElementById(key).getContext('2d'),
                     empanelledShortQuestions[key],
                     Object.values(counts[key]),
-                    // ['rgba(255,159,64,0.2)', 'rgba(153,102,255,0.2)'],
-                    ['#2196f3',
-                        '#ffa000',
-                        '#00c853',
-                        '#ff0000', ' #ff4081'],
+                    ['#2196f3', '#ffa000', '#00c853', '#ff0000', ' #ff4081'],
                     ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
                     Object.keys(counts[key]),
                     empanelledShortQuestions[key]
@@ -152,7 +140,6 @@ function empanelledGraph() {
                     document.getElementById(key).getContext('2d'),
                     empanelledShortQuestions[key],
                     [counts[key].yes, counts[key].no],
-                    // ['rgba(54,162,235,0.2)', 'rgba(255,205,86,0.2)'],
                     ['#00c853', '#ff0000'],
                     ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
 
@@ -179,11 +166,7 @@ function empanelledGraph() {
                 empanelledShortQuestions[key],
                 Object.keys(counts[key]),
                 counts[key],
-                // ['rgba(255,99,132,0.2)', 'rgba(255,159,64,0.2)', 'rgba(255,205,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(54,162,235,0.2)'],
-                ['#ff0000', ' #ff4081',
-                    '#ffa000', '#2196f3'
-                    ,
-                    '#00c853'],
+                ['#ff0000', ' #ff4081', '#ffa000', '#2196f3', '#00c853'],
                 ['#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3', '#f0f1f3'],
                 empanelledShortQuestions[key]);
         }
