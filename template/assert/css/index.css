@@ -2,6 +2,12 @@ body {
     /* font-family: 'Times New ', Times, serif, sans-serif !important; */
 }
 
+.techxquad {
+    /* filter: drop-shadow(30px 30px 30px rgba(0, 0, 0, 0.5)); */
+    filter: drop-shadow(1px 1px 0 black) drop-shadow(-1px -1px 0 black);
+    /* background-color: #3399ff; */
+
+}
 .nav-heading {
     font-weight: 800;
     color: white;
