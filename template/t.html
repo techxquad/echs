@@ -4,51 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap Footer Example</title>
-    <!-- Add Bootstrap CSS -->
-    <link rel="stylesheet" href="./assert/css/index.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .footer {
-        background-color: #f8f9fa;
-        padding: 20px 0;
-        text-align: center;
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-        }
-
-        .footer img {
-        height: 50px;
-        /* Adjust the height as needed */
-        margin: 0 10px;
-        /* Add some space between images */
-        }
-    </style>
+    <title>Pie Chart with Percentage Labels</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include the chartjs-plugin-datalabels library -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 
 <body>
+    <div style="width: 50%; margin: 0 auto;">
+        <canvas id="myChart"></canvas>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <a style="text-decoration: none; color: black;" href="https://www.techxquad.in/" target="_blank">
-                        <!-- Replace with your actual image paths -->
-                        <img src="./assert/logo/global.jpg" alt="First Image">
-                        <img class="techxquad" src="./assert/logo/techxquad.png" alt="Second Image">
-                        <p>All Right Reserved &copy; 2024 | Developed | Maintained </p>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Add Bootstrap JS and dependencies (Optional if you need Bootstrap JS functionality) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        var canvas = document.getElementById('myChart');
+        new Chart(canvas, {
+            type: 'pie',
+            data: {
+                labels: ['January', 'February', 'March'],
+                datasets: [{
+                    data: [50445, 33655, 15900],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    datalabels: {
+                        color: ['green', 'white', 'red'],
+                        formatter: (value, context) => {
+                            let sum = 0;
+                            const dataArr = context.chart.data.datasets[0].data;
+                            dataArr.forEach(data => {
+                                sum += data;
+                            });
+                            const percentage = ((value / sum) * 100).toFixed(2) + "%";
+                            return percentage;
+                        },
+                        font: {
+                            weight: 'bold',
+                            size: 14
+                        }
+                    }
+                }
+            },
+            plugins: [ChartDataLabels] // Register the plugin
+        });
+    </script>
 </body>
 
 </html>

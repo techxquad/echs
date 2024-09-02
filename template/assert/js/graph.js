@@ -22,6 +22,8 @@
 // ];
 const counts = {};
 
+// Register the ChartDataLabels plugin
+Chart.register(ChartDataLabels);
 
 function createDiv(questionsDiv) {
     let graphDiv = ''
@@ -39,12 +41,12 @@ function createLineChart(ctx, label, x_label, data, backgroundColor, borderColor
     new Chart(ctx, {
         type: 'line',
         data: {
-            // labels: x_label,
+            labels: x_label, // Set x-axis labels
             datasets: [{
-                label: "",
+                label: label,
                 data: data,
                 backgroundColor: backgroundColor,
-                // borderColor: borderColor,
+                borderColor: borderColor,
                 borderWidth: 4,
                 fill: false,
                 tension: 0.1, // Controls the curve of the line
@@ -54,6 +56,7 @@ function createLineChart(ctx, label, x_label, data, backgroundColor, borderColor
         },
         options: {
             plugins: {
+
                 title: {
                     display: true,
                     text: chartTitle,
@@ -64,15 +67,32 @@ function createLineChart(ctx, label, x_label, data, backgroundColor, borderColor
                 legend: {
                     display: false // Hides the legend, removing the rectangle button
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+                datalabels: {
+                    display: false
                 }
-
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Feedback Star',
+                        font: {
+                            size: 15// Font size for the x-axis label
+                        } // Label for x-axis
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Number of Person', // Label for y-axis
+                        font: {
+                            size: 15 // Font size for the x-axis label
+                        }
+                    },
+                    beginAtZero: true
+                }
             }
-        }
-
+        },
     });
 }
 
@@ -102,20 +122,67 @@ function createBarChart(ctx, label, data, backgroundColor, borderColor) {
 
 // Function to create a donut chart
 function createDonutChart(ctx, label, data, backgroundColor, borderColor, labels, chartTitle) {
+
+    function sortTimeIntervals(a, b) {
+        const order = [
+            "Upto 15 mins",
+            "15 - 30 mins",
+            "30 - 60 mins",
+            "01 - 02 hrs",
+            "Above 01 hr",
+            "Above 02 hrs"
+        ];
+
+        return order.indexOf(a) - order.indexOf(b);
+    }
+
+    // Combine labels and data into an array of objects
+    const combinedData = labels.map((label, index) => ({
+        label: label,
+        value: data[index]
+    }));
+
+    // Sort the combined data array based on the time intervals
+    combinedData.sort((a, b) => sortTimeIntervals(a.label, b.label));
+
+    // Extract the sorted labels and data
+    const sortedLabels = combinedData.map(item => item.label);
+    const sortedData = combinedData.map(item => item.value);
+
+
+
     new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: labels,
+            labels: sortedLabels,
             datasets: [{
                 label: label,
                 backgroundColor: backgroundColor,
                 borderColor: borderColor,
                 borderWidth: 5,
-                data: data
+                data: sortedData
             }]
         },
         options: {
             plugins: {
+                datalabels: {
+                    color: ['white'],
+                    backgroundColor: ["#00000060"],
+
+                    formatter: (value, context) => {
+                        let sum = 0;
+                        const dataArr = context.chart.data.datasets[0].data;
+                        dataArr.forEach(data => {
+                            sum += data;
+                        });
+                        const percentage = ((value / sum) * 100).toFixed(2) + "%";
+                        return percentage;
+                    },
+                    font: {
+                        weight: 'bold',
+                        size: 15
+                    }
+                },
                 title: {
                     display: true,
                     text: chartTitle,
@@ -130,6 +197,8 @@ function createDonutChart(ctx, label, data, backgroundColor, borderColor, labels
 
 
 function createPieChart(ctx, label, data, backgroundColor, borderColor, chartTitle) {
+
+
     new Chart(ctx, {
         type: 'pie',
         data: {
@@ -144,6 +213,23 @@ function createPieChart(ctx, label, data, backgroundColor, borderColor, chartTit
         },
         options: {
             plugins: {
+                datalabels: {
+                    color: ['white'],
+                    backgroundColor: ["#00000060"],
+                    formatter: (value, context) => {
+                        let sum = 0;
+                        const dataArr = context.chart.data.datasets[0].data;
+                        dataArr.forEach(data => {
+                            sum += data;
+                        });
+                        const percentage = ((value / sum) * 100).toFixed(2) + "%";
+                        return percentage;
+                    },
+                    font: {
+                        weight: 'bold',
+                        size: 15
+                    }
+                },
                 title: {
                     display: true,
                     text: chartTitle,
@@ -155,6 +241,7 @@ function createPieChart(ctx, label, data, backgroundColor, borderColor, chartTit
         }
     });
 }
+
 
 
 

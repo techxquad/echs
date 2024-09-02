@@ -10,6 +10,7 @@ h2 {
     height: 300px;
     width: 300px;
     overflow: hidden;
+    color: #00000060;
 }
 
 /* .photo {
