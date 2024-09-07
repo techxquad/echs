@@ -1,57 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pie Chart with Percentage Labels</title>
-    <!-- Include Chart.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Include the chartjs-plugin-datalabels library -->
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-</head>
-
-<body>
-    <div style="width: 50%; margin: 0 auto;">
-        <canvas id="myChart"></canvas>
-    </div>
-
-    <script>
-        var canvas = document.getElementById('myChart');
-        new Chart(canvas, {
-            type: 'pie',
-            data: {
-                labels: ['January', 'February', 'March'],
-                datasets: [{
-                    data: [50445, 33655, 15900],
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    datalabels: {
-                        color: ['green', 'white', 'red'],
-                        formatter: (value, context) => {
-                            let sum = 0;
-                            const dataArr = context.chart.data.datasets[0].data;
-                            dataArr.forEach(data => {
-                                sum += data;
-                            });
-                            const percentage = ((value / sum) * 100).toFixed(2) + "%";
-                            return percentage;
-                        },
-                        font: {
-                            weight: 'bold',
-                            size: 14
-                        }
-                    }
-                }
-            },
-            plugins: [ChartDataLabels] // Register the plugin
-        });
-    </script>
-</body>
-
-</html>
+                                    <div style="visibility: hidden;">
+                                        <input type="radio" id="star1_q7" name="q7" value="1">
+                                        <input type="radio" id="star1_q8" name="q8" value="1">
+                                        <input type="radio" id="yes_q9" name="q9" value="yes">
+                                        <textarea class="form-control" class="form-control" id="q10"
+                                            name="q10"></textarea>
+                                        <input type="radio" required id="star1_q11" name="q11" value="1">
+                                        <textarea class="form-control" id="q12" name="q12"></textarea>
+                                    </div>
